@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span [routerLinkActive]='["link-active"]'>
+      <button [routerLink]='["/home"]' mat-raised-button>HOME</button>
+      <button [routerLink]='["/catalog"]' mat-raised-button>CATALOG</button>
+      <button [routerLink]='["/about"]' mat-raised-button>ABOUT</button>
+      <button mat-raised-button [matMenuTriggerFor]="menu">ASSEMBLIES</button>
+      <mat-menu #menu="matMenu">
+        <button [routerLink]='["/ready_assemblies"]' mat-menu-item>READY ASSEMBLIES</button>
+        <button [routerLink]='["/create_assambly"]' mat-menu-item>CREATE ASSEMBLY</button>
+      </mat-menu>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+

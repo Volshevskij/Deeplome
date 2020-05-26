@@ -1,0 +1,26 @@
+:host {
+  height: 80%;
+}
+.container {
+  background-color: black;
+  height: 100%;
+}
+
+.top-content {
+  display: flex;
+  flex-direction: row;
+  .picture {
+    height: 100%;
+    width: 50%;
+   }
+   .about {
+     height: 100%;
+     width: 50%;
+   }
+}
+
+.bottom-content {
+  overflow: auto;
+}
+
+

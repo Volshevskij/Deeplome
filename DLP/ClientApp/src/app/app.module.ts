@@ -16,6 +16,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
+import { HttpClientModule } from '@angular/common/http';
+import { ItemComponent } from './item/item.component';
+import { AssemblyComponent } from './assembly/assembly.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +27,13 @@ import {MatListModule} from '@angular/material/list';
     NavbarComponent,
     FooterComponent,
     CatalogComponent,
-    AboutComponent
+    AboutComponent,
+    ItemComponent,
+    AssemblyComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,

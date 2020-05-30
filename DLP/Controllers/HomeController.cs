@@ -11,5 +11,10 @@ namespace DLP.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
+        [HttpGet]
+        public int ReturtnVAL()
+        {
+            return 1;
+        }
     }
 }

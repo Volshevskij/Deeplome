@@ -16,9 +16,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ItemComponent } from './item/item.component';
 import { AssemblyComponent } from './assembly/assembly.component';
+import { ContentService } from './services/content/content.service';
+import {HeaderInsterseptor} from './services/content/interseptor.service';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +47,12 @@ import { AssemblyComponent } from './assembly/assembly.component';
     MatButtonModule,
     MatListModule
   ],
-  providers: [],
+  providers: [
+    ContentService,
+    /*{ provide: HTTP_INTERCEPTORS, 
+      useClass: HeaderInsterseptor,
+      multi: true },*/
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

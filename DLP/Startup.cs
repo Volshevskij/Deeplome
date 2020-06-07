@@ -28,6 +28,10 @@ namespace DLP
             services.AddTransient<IPCService, PCService>();
             services.AddTransient<ICatalogService, CatalogService>();
 
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<PCContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PCConnection")));
+            services.AddDbContext<CatalogContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CatalogConnection")));
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

@@ -6,8 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using DLP.Entities;
-using DLP.Services;
+using DLP.Entities.Catalog;
+using DLP.Entities.PC;
+using DLP.Services.PC;
+using DLP.Services.Catalog;
 
 namespace DLP
 {
@@ -23,6 +25,9 @@ namespace DLP
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IPCService, PCService>();
+            services.AddTransient<ICatalogService, CatalogService>();
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

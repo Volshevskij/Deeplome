@@ -1,0 +1,30 @@
+:host {
+  height: 80%;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  background-color: black;
+}
+
+.left-flex {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  width: 30%;
+}
+
+.right-flex {
+  height: 100%;
+  width: 70%;
+}
+
+.top-content {
+  height: 50%;
+}
+
+.bottom-content {
+  height: 50%;
+}

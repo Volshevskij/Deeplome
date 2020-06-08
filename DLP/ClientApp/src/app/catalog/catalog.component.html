@@ -1,31 +1,43 @@
 <div class="content-container">
 
   <div class="filter-container">
-    <mat-list  role="list">
-      <mat-list-item role="listitem"> Pepper </mat-list-item>
-      <mat-list-item role="listitem"> Salt </mat-list-item>
-      <mat-list-item role="listitem"> Paprika </mat-list-item>
-      <mat-list-item role="listitem"> Pepper </mat-list-item>
-      <mat-list-item role="listitem"> Salt </mat-list-item>
-      <mat-list-item role="listitem"> Paprika </mat-list-item>
-      <mat-list-item role="listitem"> Pepper </mat-list-item>
-      <mat-list-item role="listitem"> Salt </mat-list-item>
-      <mat-list-item role="listitem"> Paprika </mat-list-item>
-      <mat-list-item role="listitem"> Pepper </mat-list-item>
-      <mat-list-item role="listitem"> Salt </mat-list-item>
-      <mat-list-item role="listitem"> Paprika </mat-list-item>
-      <mat-list-item role="listitem"> Pepper </mat-list-item>
-      <mat-list-item role="listitem"> Salt </mat-list-item>
-      <mat-list-item role="listitem"> Paprika </mat-list-item>
-      <mat-list-item role="listitem"> Pepper </mat-list-item>
-      <mat-list-item role="listitem"> Salt </mat-list-item>
-      <mat-list-item role="listitem"> Paprika </mat-list-item>
-     </mat-list>
+    <div class="filt-comtainer">
+      <div class="item-disc">ТИП: ОЗУ</div>
+      </div>
+      <div class="filt-comtainer">
+        <div class="item-disc">Категория: Любая</div>
+        </div>
+        <div class="filt-comtainer">
+          <div class="item-disc">Цена: Любая</div>
+          </div>
+          <div class="filt-comtainer">
+            <div class="item-disc">Производитель: Любой</div>
+            </div>
+            <div class="filt-comtainer">
+              <div class="item-disc">Каличество: Любое</div>
+              </div>
+              <div class="filt-comtainer">
+                <div class="item-disc">DDR: Любое</div>
+                </div>
   </div>
 
   <div class ="items-container">
-    <mat-list *ngFor="let item of tmp; let i = index"  role="list">
-      <mat-list-item role="listitem"> {{item?.content.rendered}} </mat-list-item>
-     </mat-list>
-  </div>
+    <div class="item-comtainer">
+      <div class="picture-disc">
+        <img src="https://content2.onliner.by/catalog/device/header/d221b391063d15550222934e4b65ba80.jpeg" alt="альтернативный текст">
+      </div>
+      <div class="item-disc">ОЗУ: HyperX Predator 2x8GB DDR4 PC4-25600</div>
+      </div>
+      <div class="item-comtainer">
+        <div class="picture-disc">
+          <img src="https://content2.onliner.by/catalog/device/header/bd746c29435133b6d513465cb5cb8d77.jpeg" alt="альтернативный текст">
+        </div>
+        <div class="item-disc">ОЗУ: Crucial Ballistix 2x8GB DDR4 PC4-25600</div>
+        </div>
+        <div class="item-comtainer">
+          <div class="picture-disc">
+            <img src="https://content2.onliner.by/catalog/device/header/e0b5bc636868f76c39a5bb10346dfca9.jpeg" alt="альтернативный текст">
+          </div>
+          <div class="item-disc">ОЗУ: G.Skill Aegis 2x8GB DDR4 </div>
+          </div>
 </div>

@@ -19,6 +19,7 @@ import {MatListModule} from '@angular/material/list';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemComponent } from './item/item.component';
 import { AssemblyComponent } from './assembly/assembly.component';
+import { CreateAssemblyComponent } from './create-assembly/create-assembly.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AssemblyComponent } from './assembly/assembly.component';
     CatalogComponent,
     AboutComponent,
     ItemComponent,
-    AssemblyComponent
+    AssemblyComponent,
+    CreateAssemblyComponent
   ],
   imports: [
     BrowserModule,

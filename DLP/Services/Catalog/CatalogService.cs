@@ -57,7 +57,7 @@ namespace DLP.Services.Catalog
                     Description = "Matisse, AM4, 4 ядра, частота 4.3/3.8 ГГц, кэш 2 МБ + 16 МБ, техпроцесс 7 нм, TDP 65W", 
                     Price = 0, 
                     MediaLink = "https://diplomawp.000webhostapp.com/wp-content/uploads/2020/05/12122.jpeg", 
-                    CoreFrequencyHz = 3.8, 
+                    CoreFrequencyMHz = 3.8, 
                     CoresQuantity = 4, 
                     FlowsQuantity = 8, 
                     HeatPowerVt = 65, 
@@ -172,6 +172,7 @@ namespace DLP.Services.Catalog
             attributes.Add(new AttributeViewModel() { Name = "Количество слотов памяти", value = Convert.ToString(motherboard.RamMaxQuantity) });
             attributes.Add(new AttributeViewModel() { Name = "Тип памяти", value = motherboard.MemoryType });
             attributes.Add(new AttributeViewModel() { Name = "Чипсет", value = motherboard.Chipset });
+            attributes.Add(new AttributeViewModel() { Name = "PCI слот", value = motherboard.PCIVersion });
             return new HardwareViewModel() { DBId = motherboard.Id, HardwareType = "Материнская плата", Name = motherboard.Name, Price = motherboard.Price, Description = motherboard.Description, MediaLink = motherboard.MediaLink, Attributes = attributes };
         }
         
@@ -181,7 +182,7 @@ namespace DLP.Services.Catalog
             List<AttributeViewModel> attributes = new List<AttributeViewModel>();
             attributes.Add(new AttributeViewModel() { Name = "Сокет", value = processor.Socket });
             attributes.Add(new AttributeViewModel() { Name = "Количество ядер", value = Convert.ToString(processor.CoresQuantity) });
-            attributes.Add(new AttributeViewModel() { Name = "Частота ядра", value = Convert.ToString(processor.CoreFrequencyHz) });
+            attributes.Add(new AttributeViewModel() { Name = "Частота ядра (MHz)", value = Convert.ToString(processor.CoreFrequencyMHz) });
             attributes.Add(new AttributeViewModel() { Name = "Количество потокоов", value = Convert.ToString(processor.FlowsQuantity) });
             attributes.Add(new AttributeViewModel() { Name = "Выделяемое тепло (Vt)", value = Convert.ToString(processor.HeatPowerVt) });
             return new HardwareViewModel() { DBId = processor.Id, HardwareType = "Процессор", Name = processor.Name, Description = processor.Description, Price = processor.Price, MediaLink = processor.MediaLink, Attributes = attributes };
@@ -216,48 +217,211 @@ namespace DLP.Services.Catalog
             attributes.Add(new AttributeViewModel() { Name = "PCI слот", value = gpu.PCIVersion });
             attributes.Add(new AttributeViewModel() { Name = "Частота памяти (MHz)", value = Convert.ToString(gpu.MemoryFrequencyMHz) });
             attributes.Add(new AttributeViewModel() { Name = "Мощность (Vt)", value = Convert.ToString(gpu.PowerConsuptionVt) });
-            return new HardwareViewModel();
+            return new HardwareViewModel() { DBId = gpu.Id, HardwareType = "Видеокарта", Name = gpu.Name, Description = gpu.Description, Price = gpu.Price, MediaLink = gpu.MediaLink, Attributes = attributes };
         }
-        //WIP
+        
         public void SetCorpusToDb(HardwareViewModel inputCorpus)
         {
-
+            Corpus corpus = new Corpus() { Name = inputCorpus.Name, Description = inputCorpus.Description, Price = inputCorpus.Price, MediaLink = inputCorpus.MediaLink };
+            foreach(AttributeViewModel atribute in inputCorpus.Attributes)
+            {
+                if(atribute.Name == "Материал")
+                {
+                    corpus.Material = atribute.value;
+                }
+                else if(atribute.Name == "Цвет")
+                {
+                    corpus.Color = atribute.value;
+                }
+                else if (atribute.Name == "Форм-фактор материнской платы")
+                {
+                    corpus.motherboardType = atribute.value;
+                }
+            }
+            db.Corpuses.Add(corpus);
+            db.SaveChanges();
         }
-        //WIP
+        
         public void SetPowerToDb(HardwareViewModel inputPower)
         {
-
+            Power power = new Power() { Name = inputPower.Name, Description = inputPower.Description, Price = inputPower.Price, MediaLink = inputPower.MediaLink };
+            foreach(AttributeViewModel attribute in inputPower.Attributes)
+            {
+                if(attribute.Name == "Генерируемая мощность (Vt)")
+                {
+                    power.GeneratePowerVt = Convert.ToDouble(attribute.value);
+                }
+            }
+            db.Powers.Add(power);
+            db.SaveChanges();
         }
-        //WIP
+        
         public void SetmotherboardToDb(HardwareViewModel inputmotherboard)
         {
-
+            Motherboard motherboard = new Motherboard() { Name = inputmotherboard.Name, Description = inputmotherboard.Description, Price = inputmotherboard.Price, MediaLink = inputmotherboard.MediaLink };
+            foreach(AttributeViewModel attribute in inputmotherboard.Attributes)
+            {
+                if (attribute.Name == "Сокет")
+                {
+                    motherboard.Socket = attribute.value;
+                }
+                else if (attribute.Name == "Форм-фактор")
+                {
+                    motherboard.MotherboardType = attribute.value;
+                }
+                else if (attribute.Name == "Количество слотов памяти")
+                {
+                    motherboard.RamMaxQuantity = Convert.ToInt32(attribute.value);
+                }
+                else if (attribute.Name == "Тип памяти")
+                {
+                    motherboard.MemoryType = attribute.value;
+                }
+                else if (attribute.Name == "Чипсет")
+                {
+                    motherboard.Chipset = attribute.value;
+                }
+                else if (attribute.Name == "PCI слот")
+                {
+                    motherboard.PCIVersion = attribute.value;
+                }
+            }
+            db.Motherboards.Add(motherboard);
+            db.SaveChanges();
         }
-        //WIP
+        
         public void SetProcessorToDb(HardwareViewModel inputProcessor)
         {
-
+            Processor processor = new Processor() { Name = inputProcessor.Name, Description = inputProcessor.Description, Price = inputProcessor.Price, MediaLink = inputProcessor.MediaLink };
+            foreach( AttributeViewModel attribute in inputProcessor.Attributes)
+            {
+                if( attribute.Name == "Сокет")
+                {
+                    processor.Socket = attribute.value;
+                }
+                else if( attribute.Name == "Количество ядер")
+                {
+                    processor.CoresQuantity = Convert.ToInt32(attribute.value);
+                }
+                else if (attribute.Name == "Частота ядра (MHz)")
+                {
+                    processor.CoreFrequencyMHz = Convert.ToDouble(attribute.value);
+                }
+                else if (attribute.Name == "Количество потокоов")
+                {
+                    processor.FlowsQuantity = Convert.ToInt32(attribute.value);
+                }
+                else if (attribute.Name == "Выделяемое тепло (Vt)")
+                {
+                    processor.HeatPowerVt = Convert.ToDouble(attribute.value);
+                }
+            }
+            db.Processors.Add(processor);
+            db.SaveChanges();
         }
-        //WIP
+        
         public void SetRamToDb(HardwareViewModel inputRam)
         {
-
+            Ram ram = new Ram() { Name = inputRam.Name, Description = inputRam.Description, Price = inputRam.Price, MediaLink = inputRam.MediaLink };
+            foreach(AttributeViewModel attribute in inputRam.Attributes)
+            {
+                if (attribute.Name == "Обьём (Gb)")
+                {
+                    ram.ValueGb = Convert.ToInt32(attribute.value);
+                }
+                else if (attribute.Name == "Количество планок")
+                {
+                    ram.Quantity = Convert.ToInt32(attribute.value);
+                }
+                else if (attribute.Name == "Тип памяти")
+                {
+                    ram.MemoryType = attribute.value;
+                }
+                else if (attribute.Name == "Частота памяти (MHz)")
+                {
+                    ram.MemoryFrequencyMHz = Convert.ToDouble(attribute.value);
+                }
+            }
+            db.RAMs.Add(ram);
+            db.SaveChanges();
         }
-        //WIP
+        
         public void SetCoolerToDb(HardwareViewModel inputCooling)
         {
 
+            Cooling cooler = new Cooling() { Name = inputCooling.Name, Description = inputCooling.Description, Price = inputCooling.Price, MediaLink = inputCooling.MediaLink };
+            foreach( AttributeViewModel attribute in inputCooling.Attributes)
+            {
+                if( attribute.Name == "Сокет")
+                {
+                    cooler.Socket = attribute.value;
+                }
+                else if(attribute.Name == "Рассеивание тепла (Vt)")
+                {
+                    cooler.HeatAbsorbingVt = Convert.ToDouble(attribute.value);
+                }
+            }
+            db.Coolers.Add(cooler);
+            db.SaveChanges();
         }
-        //WIP
-        public void SetVideoToDb(HardwareViewModel inputVideo)
+        
+        public void SetVideoToDb(HardwareViewModel inputGpu)
         {
-
+            Video gpu = new Video() { Name = inputGpu.Name, Description = inputGpu.Description, Price = inputGpu.Price, MediaLink = inputGpu.MediaLink };
+            foreach(AttributeViewModel attribute in inputGpu.Attributes)
+            {
+                if (attribute.Name == "Тип памяти")
+                {
+                    gpu.MemoryType = attribute.value;
+                }
+                else if (attribute.Name == "Обьём (Gb)")
+                {
+                    gpu.ValueGb = Convert.ToInt32(attribute.value);
+                }
+                else if (attribute.Name == "PCI слот")
+                {
+                    gpu.PCIVersion = attribute.value;
+                }
+                else if (attribute.Name == "Частота памяти (MHz)")
+                {
+                    gpu.MemoryFrequencyMHz = Convert.ToDouble(attribute.value);
+                }
+                else if (attribute.Name == "Мощность (Vt)")
+                {
+                    gpu.PowerConsuptionVt = Convert.ToDouble(attribute.value);
+                }
+            }
+            db.GPUs.Add(gpu);
+            db.SaveChanges();
         }
-        //WIP
-        //main method that insert unrecognized object. He request other object for inputing recognized object.
+        
+        //main method that insert unrecognized object. He request other methods for inputing recognized object.
         public void SetProductToDb(HardwareViewModel product)
         {
-
+            switch (product.HardwareType)
+            {
+                case "Корпус":
+                    SetCorpusToDb(product);
+                    break;
+                case "Блок питания":
+                    SetPowerToDb(product);
+                    break;
+                case "Материнская плата":
+                    SetmotherboardToDb(product);
+                    break;
+                case "Процессор":
+                    SetProcessorToDb(product);
+                    break;
+                case "Оперативная память":
+                    SetRamToDb(product);
+                    break;
+                case "Охлаждение":
+                    SetCoolerToDb(product);
+                    break;
+                case "Видеокарта":
+                    SetVideoToDb(product);
+                    break;
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace DLP.Entities.Catalog
         public string Socket { get; set; }
         public int CoresQuantity { get; set; }
         public int FlowsQuantity { get; set; }
-        public double CoreFrequencyHz { get; set; }
+        public double CoreFrequencyMHz { get; set; }
         public double HeatPowerVt { get; set; }
     }
 }

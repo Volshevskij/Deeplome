@@ -145,6 +145,64 @@ namespace DLP.Services.Catalog
             return hardwares;
         }
 
+        public HardwareViewModel GetProductFromDb(int id, string hardwareType)
+        {
+            HardwareViewModel hardware= new HardwareViewModel();
+            switch (hardwareType)
+            {
+                case "Корпус":
+                    List<Corpus> corpuses = db.Corpuses.ToList();
+                    foreach (Corpus corpus in corpuses)
+                    {
+                        hardware = GetCorpusFromDb(corpus.Id);
+                    }
+                    break;
+                case "Блок питания":
+                    List<Power> powers = db.Powers.ToList();
+                    foreach (Power power in powers)
+                    {
+                        hardware = GetPowerFromDb(power.Id);
+                    }
+                    break;
+                case "Материнская плата":
+                    List<Motherboard> motherboards = db.Motherboards.ToList();
+                    foreach (Motherboard motherboard in motherboards)
+                    {
+                        hardware = GetMotherboardFromDb(motherboard.Id);
+                    }
+                    break;
+                case "Процессор":
+                    List<Processor> processors = db.Processors.ToList();
+                    foreach (Processor processor in processors)
+                    {
+                        hardware = GetProcessorFromDb(processor.Id);
+                    }
+                    break;
+                case "Оперативная память":
+                    List<Ram> rams = db.RAMs.ToList();
+                    foreach (Ram ram in rams)
+                    {
+                        hardware = GetRamFromDb(ram.Id);
+                    }
+                    break;
+                case "Охлаждение":
+                    List<Cooling> coolers = db.Coolers.ToList();
+                    foreach (Cooling cooler in coolers)
+                    {
+                        hardware = GetCoolerFromDb(cooler.Id);
+                    }
+                    break;
+                case "Видеокарта":
+                    List<Video> gpus = db.GPUs.ToList();
+                    foreach (Video gpu in gpus)
+                    {
+                        hardware = GetVideoFromDb(gpu.Id);
+                    }
+                    break;
+            }
+            return hardware;
+        }
+
         public HardwareViewModel GetCorpusFromDb(int id)
         {
             Corpus corpus = db.Corpuses.FirstOrDefault(data => data.Id == id);

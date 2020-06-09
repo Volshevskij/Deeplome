@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DLP.Entities.PC;
+using DLP.Models;
 using DLP.ViewModels.PC;
 
 namespace DLP.Services.PC
@@ -12,23 +13,32 @@ namespace DLP.Services.PC
         private PCContext db;
         public PCService(PCContext pcContext)
         {
-
+            db = pcContext;
         }
 
-        //WIP
+        
         public IEnumerable<PcModel> GetPcListFromDb()
         {
-            return new List<PcModel>();
+            List<Entities.PC.PC> pcs = db.PCs.ToList();
+            List<PcModel> pcModels = new List<PcModel>();
+            foreach(Entities.PC.PC pc in pcs)
+            {
+                pcModels.Add(new PcModel() { Id = pc.Id, Name = pc.Name, CorpusId = pc.CorpusId, PowerId = pc.PowerId, MotherboardId = pc.MotherboardId, ProcessorId = pc.ProcessorId, CoolerId = pc.CoolerId, Ram1Id = pc.Ram1Id, Ram2Id = pc.Ram2Id, Ram3Id = pc.Ram3Id, ram4Id = pc.ram4Id, GPUId = pc.GPUId });
+            }
+            return pcModels;
         }
-        //WIP
+        
         public PcModel GetPcFromDb(int id)
         {
-            return new PcModel();
+            Entities.PC.PC pc = db.PCs.FirstOrDefault(data => data.Id == id);
+            return new PcModel() { Id = pc.Id, Name = pc.Name, CorpusId = pc.CorpusId, PowerId = pc.PowerId, MotherboardId = pc.MotherboardId, ProcessorId = pc.ProcessorId, CoolerId = pc.CoolerId, Ram1Id = pc.Ram1Id, Ram2Id = pc.Ram2Id, Ram3Id = pc.Ram3Id, ram4Id = pc.ram4Id, GPUId = pc.GPUId };
         }
-        //WIP
-        public void SetPcToDb(PcModel PC)
+        
+        public void SetPcToDb(PcModel pc)
         {
-            
+            Entities.PC.PC PC = new Entities.PC.PC() { Id = pc.Id, Name = pc.Name, CorpusId = pc.CorpusId, PowerId = pc.PowerId, MotherboardId = pc.MotherboardId, ProcessorId = pc.ProcessorId, CoolerId = pc.CoolerId, Ram1Id = pc.Ram1Id, Ram2Id = pc.Ram2Id, Ram3Id = pc.Ram3Id, ram4Id = pc.ram4Id, GPUId = pc.GPUId };
+            db.PCs.Add(PC);
+            db.SaveChanges();
         }
     }
 }

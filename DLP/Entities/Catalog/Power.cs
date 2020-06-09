@@ -12,6 +12,6 @@ namespace DLP.Entities.Catalog
         public string Description { get; set; }
         public int Price { get; set; }
         public string MediaLink { get; set; }
-        public int GeneratePowerVt { get; set; }
+        public double GeneratePowerVt { get; set; }
     }
 }

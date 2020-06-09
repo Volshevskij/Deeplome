@@ -15,7 +15,7 @@ namespace DLP.Entities.Catalog
         public int ValueGb { get; set; }
         public string MemoryType { get; set; }
         public string PCIVersion { get; set; }
-        public int MemoryFrequencyHz { get; set; }
-        public int PowerConsuptionVt { get; set; }
+        public double MemoryFrequencyMHz { get; set; }
+        public double PowerConsuptionVt { get; set; }
     }
 }

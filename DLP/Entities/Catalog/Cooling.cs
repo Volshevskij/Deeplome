@@ -13,6 +13,6 @@ namespace DLP.Entities.Catalog
         public int Price { get; set; }
         public string MediaLink { get; set; }
         public string Socket { get; set; }
-        public int HeatAbsorbingVt { get; set; }
+        public double HeatAbsorbingVt { get; set; }
     }
 }

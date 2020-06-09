@@ -15,6 +15,6 @@ namespace DLP.Entities.Catalog
         public int ValueGb { get; set; }
         public string MemoryType { get; set; }
         public int Quantity { get; set; }
-        public int MemoryFrequencyHz { get; set; }
+        public double MemoryFrequencyMHz { get; set; }
     }
 }

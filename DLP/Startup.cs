@@ -5,6 +5,11 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using DLP.Entities.Catalog;
+using DLP.Entities.PC;
+using DLP.Services.PC;
+using DLP.Services.Catalog;
 
 namespace DLP
 {
@@ -20,6 +25,13 @@ namespace DLP
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IPCService, PCService>();
+            services.AddTransient<ICatalogService, CatalogService>();
+
+            //string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<PCContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PCConnection")));
+            services.AddDbContext<CatalogContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CatalogConnection")));
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

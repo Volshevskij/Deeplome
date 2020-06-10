@@ -1,24 +1,12 @@
 <div class="content-container">
-  <div  class="main-grid-container">
+  <div class="main-grid-container">
 
-    <div class="item-comtainer">
+    <div *ngFor="let item of posts" class="item-comtainer">
       <div class="picture-disc">
-        <img src="https://content2.onliner.by/catalog/device/header/d221b391063d15550222934e4b65ba80.jpeg" alt="альтернативный текст">
+        <img src="https://content2.onliner.by/catalog/device/header/d221b391063d15550222934e4b65ba80.jpeg" alt="Unfound">
       </div>
-      <div class="item-disc">ОЗУ: HyperX Predator 2x8GB DDR4 PC4-25600</div>
+      <div [innerHTML]="item.content.rendered" class="item-disc"></div>
       </div>
-      <div class="item-comtainer">
-        <div class="picture-disc">
-          <img src="https://content2.onliner.by/catalog/device/header/bd746c29435133b6d513465cb5cb8d77.jpeg" alt="альтернативный текст">
-        </div>
-        <div class="item-disc">ОЗУ: Crucial Ballistix 2x8GB DDR4 PC4-25600</div>
-        </div>
-        <div class="item-comtainer">
-          <div class="picture-disc">
-            <img src="https://content2.onliner.by/catalog/device/header/e0b5bc636868f76c39a5bb10346dfca9.jpeg" alt="альтернативный текст">
-          </div>
-          <div class="item-disc">ОЗУ: G.Skill Aegis 2x8GB DDR4 </div>
-          </div>
 
   </div>
 
@@ -33,12 +21,6 @@
           <div class="short-item-comtainer">
             <div class="item-disc">Добавлены первые компоненты</div>
             </div>
-    </div>
-
-    <div  class="news-grid-container">
-      <div class="item-comtainer">
-        <div class="item-disc">Ожидает инструкций</div>
-        </div>
     </div>
   </div>
 

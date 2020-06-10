@@ -1,30 +1,18 @@
 <div class="container">
-  <div class="param-name">HyperX Predator 2x8GB</div>
+  <div class="param-name">{{this.item.Name}}</div>
   <div class="top-content">
     <div class="picture">
-      <img src="https://content2.onliner.by/catalog/device/header/d221b391063d15550222934e4b65ba80.jpeg" alt="альтернативный текст">
+      <img src={{this.item.MediaLink}} alt="Unfound">
     </div>
     <div class="about">
-      Оперативная память производства hyperX. В комплекте поставляются 2 планки. Корпус производства hyperX.
+      {{this.item.Description}}
     </div>
   </div>
   <div class="param-name">ПАРАМЕТРЫ</div>
   <div class="bottom-content">
-    <div class="item-comtainer">
-    <div class="item-disc">Объем</div>
-    <div class="item-disc">16 ГБ</div>
+    <div *ngFor="let attrebute of this.item.Attributes" class="item-comtainer">
+      <div class="item-disc">{{attrebute.Name}}</div>
+      <div class="item-disc">{{attrebute.Value}}</div>
     </div>
-    <div class="item-comtainer">
-      <div class="item-disc">Тип </div>
-      <div class="item-disc">DDR4 DIMM</div>
-    </div>
-
-    <div class="item-comtainer">
-      <div class="item-disc">Частота </div>
-      <div class="item-disc">3200 МГц</div>
-      </div>
-
-
-
   </div>
 </div>

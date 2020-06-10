@@ -35,8 +35,8 @@ namespace DLP.Controllers
             return Service.GetPcListFromDb();
         }
 
-        [HttpGet("PC")]
-        public PcModel GetCatalog([FromBody] int id)
+        [HttpGet("PC/{id}")]
+        public PcModel GetCatalog(int id)
         {
             return Service.GetPcFromDb(id);
         }
@@ -48,34 +48,34 @@ namespace DLP.Controllers
             return Ok();
         }
 
-        [HttpGet("comparecorpusmotherboard")]
-        public CompareMessage CompareCorpusMotherboard([FromBody] CompareIdViewModel Ids) {
-            return Service.CompareCorpusMotherboard(Ids.firstRequestId, Ids.secondRequestId);
+        [HttpGet("comparecorpusmotherboard/{firstRequestId}/{secondRequestId}")]
+        public CompareMessage CompareCorpusMotherboard(int firstRequestId, int secondRequestId) {
+            return Service.CompareCorpusMotherboard(firstRequestId, secondRequestId);
         }
 
-        [HttpGet("comparemotherboardprocessor")]
-        public CompareMessage CompareMotherboardProcessor([FromBody] CompareIdViewModel Ids) {
-            return Service.CompareMotherboardProcessor(Ids.firstRequestId, Ids.secondRequestId);
+        [HttpGet("comparemotherboardprocessor/{firstRequestId}/{secondRequestId}")]
+        public CompareMessage CompareMotherboardProcessor(int firstRequestId, int secondRequestId) {
+            return Service.CompareMotherboardProcessor(firstRequestId, secondRequestId);
         }
 
-        [HttpGet("comparemotherboardram")]
+        [HttpPost("comparemotherboardram")]
         public CompareMessage CompareMotherboardRam([FromBody] CompareIdViewModel Ids) {
             return Service.CompareMotherboardRam(Ids.firstRequestId, Ids.ListRequestIds);
         }
 
-        [HttpGet("compareprocesorcooler")]
-        public CompareMessage CompareProcessorCooler([FromBody] CompareIdViewModel Ids) {
-            return Service.CompareProcessorCooler(Ids.firstRequestId, Ids.secondRequestId);
+        [HttpGet("compareprocesorcooler/{firstRequestId}/{secondRequestId}")]
+        public CompareMessage CompareProcessorCooler(int firstRequestId, int secondRequestId) {
+            return Service.CompareProcessorCooler(firstRequestId, secondRequestId);
         }
 
-        [HttpGet("comparegpumotherboard")]
-        public CompareMessage CompareGpuMotherboard([FromBody] CompareIdViewModel Ids) {
-            return Service.CompareGpuMotherboard(Ids.firstRequestId, Ids.secondRequestId);
+        [HttpGet("comparegpumotherboard/{firstRequestId}/{secondRequestId}")]
+        public CompareMessage CompareGpuMotherboard(int firstRequestId, int secondRequestId) {
+            return Service.CompareGpuMotherboard(firstRequestId, secondRequestId);
         }
 
-        [HttpGet("comparegpupower")]
-        public CompareMessage CompareGpuPower([FromBody] CompareIdViewModel Ids) {
-            return Service.CompareGpuPower(Ids.firstRequestId, Ids.secondRequestId);
+        [HttpGet("comparegpupower/{firstRequestId}/{secondRequestId}")]
+        public CompareMessage CompareGpuPower(int firstRequestId, int secondRequestId) {
+            return Service.CompareGpuPower(firstRequestId, secondRequestId);
         }
 
 

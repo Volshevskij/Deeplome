@@ -36,14 +36,14 @@ namespace DLP.Controllers
             return Service.GetCatalog();
         }
 
-        [HttpGet("{id}")]
-        public HardwareViewModel GetProduct(int id, [FromBody] string hardwareType)
+        [HttpGet("{id}/{hardwareType}")]
+        public HardwareViewModel GetProduct(int id, string hardwareType)
         {
             return Service.GetProductFromDb(id, hardwareType);
         }
 
-        [HttpGet("GetProductsByName")]
-        public IEnumerable<HardwareViewModel> GetCatalog([FromBody] string productName)
+        [HttpGet("GetProductsByName/{productName}")]
+        public IEnumerable<HardwareViewModel> GetCatalog(string productName)
         {
             return Service.GetProductsFromDbByName(productName);
         }

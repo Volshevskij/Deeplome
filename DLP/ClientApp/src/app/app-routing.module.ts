@@ -11,7 +11,7 @@ import { CreateAssemblyComponent } from './create-assembly/create-assembly.compo
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'catalog', component: CatalogComponent },
-  { path: 'item/:id', component: ItemComponent },
+  { path: 'item/:id/:type', component: ItemComponent },
   { path: 'create_assembly', component: CreateAssemblyComponent },
   { path: 'ready_assemblies', component: AssemblyComponent },
   { path: 'about', component: AboutComponent },

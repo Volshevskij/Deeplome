@@ -42,4 +42,8 @@ export class ContentService {
     this.http.post(this.connetction + 'pc/' + 'setPC/', pc).toPromise();
   }
 
+  getAssemblies() {
+    return this.http.get(this.connetction + 'pc/' + 'PCList/');
+  }
+
 }

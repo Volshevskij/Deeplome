@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ContentService} from '../services/content/content.service';
+import { Pc } from '../models/pc';
 
 @Component({
   selector: 'app-assembly',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssemblyComponent implements OnInit {
 
-  constructor() { }
+  items:Pc[] = [];
+
+  constructor(private service: ContentService) {
+   }
 
   ngOnInit() {
+    this.getAssemblies();
+  }
+
+  getAssemblies() {
+    this.service.getAssemblies().subscribe((data: any) => {
+      this.items = data;
+    }  );
   }
 
 }

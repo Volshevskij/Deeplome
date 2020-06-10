@@ -21,23 +21,11 @@
                 </div>
   </div>
 
-  <div class ="items-container">
-    <div class="item-comtainer">
+  <div  routerLinkActive="active" class ="items-container">
+    <div *ngFor="let item of items" class="item-comtainer">
       <div class="picture-disc">
-        <img src="https://content2.onliner.by/catalog/device/header/d221b391063d15550222934e4b65ba80.jpeg" alt="альтернативный текст">
+        <img src={{item?.mediaLink}} alt="Unfound">
       </div>
-      <div class="item-disc">ОЗУ: HyperX Predator 2x8GB DDR4 PC4-25600</div>
+      <div routerLink="/item/{{item?.dbId}}/{{item?.hardwareType}}" class="item-disc">{{item?.name}}</div>
       </div>
-      <div class="item-comtainer">
-        <div class="picture-disc">
-          <img src="https://content2.onliner.by/catalog/device/header/bd746c29435133b6d513465cb5cb8d77.jpeg" alt="альтернативный текст">
-        </div>
-        <div class="item-disc">ОЗУ: Crucial Ballistix 2x8GB DDR4 PC4-25600</div>
-        </div>
-        <div class="item-comtainer">
-          <div class="picture-disc">
-            <img src="https://content2.onliner.by/catalog/device/header/e0b5bc636868f76c39a5bb10346dfca9.jpeg" alt="альтернативный текст">
-          </div>
-          <div class="item-disc">ОЗУ: G.Skill Aegis 2x8GB DDR4 </div>
-          </div>
 </div>

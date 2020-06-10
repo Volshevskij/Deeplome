@@ -22,13 +22,9 @@
   </div>
 
   <div class ="items-container">
-    <div class="item-comtainer">
-      <div class="item-disc">Сбрка: HyperX Predator 2x8GB DDR4 PC4-25600</div>
+    <div *ngFor="let item of items" class="item-comtainer">
+      Название сборки
+      <div class="item-disc">{{item?.name}}</div>
       </div>
-      <div class="item-comtainer">
-        <div class="item-disc">Сборка: Crucial Ballistix 2x8GB DDR4 PC4-25600</div>
-        </div>
-        <div class="item-comtainer">
-          <div class="item-disc">Сборка: G.Skill Aegis 2x8GB DDR4 </div>
-          </div>
+      </div>
 </div>

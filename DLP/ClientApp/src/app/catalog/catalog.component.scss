@@ -23,7 +23,7 @@ overflow: auto;
 
 .item-comtainer {
   background-color: rgb(27, 26, 26);
-  height: 60px;
+  height: auto;
  font-size: 2em;
  text-align: left;
  display: flex;
@@ -54,7 +54,6 @@ overflow: auto;
 
 .picture-disc {
   width: 20%;
-  height: 100%;
   background-color: blue;
 }
 

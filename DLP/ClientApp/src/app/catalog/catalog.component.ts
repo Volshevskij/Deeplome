@@ -7,11 +7,10 @@ import {ContentService} from '../services/content/content.service';
   styleUrls: ['./catalog.component.scss']
 })
 export class CatalogComponent implements OnInit {
-  tmp: any;
+  items: any;
   constructor( private service: ContentService) { }
 
   ngOnInit() {
-    this.tmp = '';
     this.getPosts();
   }
 
@@ -19,8 +18,7 @@ export class CatalogComponent implements OnInit {
 
   getPosts() {
     this.service.getProducts().subscribe((data: any) => {
-      this.tmp = data;
-      console.log(this.tmp[0].content.rendered);
+      this.items = data;
     }  );
   }
 

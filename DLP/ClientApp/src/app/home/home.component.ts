@@ -13,14 +13,13 @@ export class HomeComponent implements OnInit {
   posts: any;
 
   ngOnInit() {
-    this.posts = '';
     this.getPosts();
   }
 
   getPosts() {
-    this.service.getProducts().subscribe((data: any) => {
+    this.service.getPosts().subscribe((data: any) => {
       this.posts = data;
-      console.log(this.posts[0].content.rendered);
+      //console.log(this.posts[0].content.rendered);
     }  );
   }
 

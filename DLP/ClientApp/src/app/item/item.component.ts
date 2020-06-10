@@ -20,7 +20,7 @@ export class ItemComponent implements OnInit {
     this.type = route.snapshot.params['type'];
   }
 
-  item: HardwareViewModel;
+  item: any;
 
   ngOnInit() {
     this.getPosts();
@@ -29,7 +29,7 @@ export class ItemComponent implements OnInit {
   getPosts() {
     this.service.getProductById(this.id, this.type).subscribe((data: any) => {
       this.item = data;
-      console.log(this.item[0].content.rendered);
+      console.log(this.item);
     }  );
   }
 

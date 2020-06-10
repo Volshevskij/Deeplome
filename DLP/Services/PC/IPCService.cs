@@ -12,6 +12,7 @@ namespace DLP.Services.PC
         IEnumerable<PcModel> GetPcListFromDb();
         PcModel GetPcFromDb(int id);
         void SetPcToDb(PcModel PC);
+        IEnumerable<CompareMessage> ComparePC(PcModel PC);
         CompareMessage CompareCorpusMotherboard(int corpusId, int motherboardId);
         CompareMessage CompareMotherboardProcessor(int motherboardId, int processorId);
         CompareMessage CompareMotherboardRam(int motherboardId, List<int> ramId);

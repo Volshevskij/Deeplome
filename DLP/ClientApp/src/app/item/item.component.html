@@ -1,18 +1,18 @@
 <div class="container">
-  <div class="param-name">{{this.item.Name}}</div>
+  <div class="param-name">{{item?.name}}</div>
   <div class="top-content">
     <div class="picture">
-      <img src={{this.item.MediaLink}} alt="Unfound">
+      <img src={{item?.mediaLink}} alt="Unfound">
     </div>
     <div class="about">
-      {{this.item.Description}}
+      {{item?.description}}
     </div>
   </div>
   <div class="param-name">ПАРАМЕТРЫ</div>
   <div class="bottom-content">
-    <div *ngFor="let attrebute of this.item.Attributes" class="item-comtainer">
-      <div class="item-disc">{{attrebute.Name}}</div>
-      <div class="item-disc">{{attrebute.Value}}</div>
+    <div *ngFor="let attribute of this.item?.attributes" class="item-comtainer">
+      <div class="item-disc">{{attribute?.name}}</div>
+      <div class="item-disc">{{attribute?.value}}</div>
     </div>
   </div>
 </div>

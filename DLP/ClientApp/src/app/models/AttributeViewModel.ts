@@ -1,4 +1,4 @@
 export class AttributeViewModel {
-  Name: string;
-  Value: string;
+  name: string;
+  value: string;
 }

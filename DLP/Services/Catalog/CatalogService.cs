@@ -193,59 +193,90 @@ namespace DLP.Services.Catalog
             return hardwares;
         }
 
+        public IEnumerable<HardwareViewModel> GetProductsByHardware(string type)
+        {
+            List<HardwareViewModel> hardwares = new List<HardwareViewModel>();
+            switch (type)
+            {
+                case "Cargo":
+                    List<Corpus> corpuses = db.Corpuses.ToList();
+                    foreach (Corpus corpus in corpuses)
+                    {
+                        hardwares.Add(GetCorpusFromDb(corpus.Id));
+                    }
+                    break;
+                case "Power":
+                    List<Power> powers = db.Powers.ToList();
+                    foreach (Power power in powers)
+                    {
+                        hardwares.Add(GetPowerFromDb(power.Id));
+                    }
+                    break;
+                case "Motherboard":
+                    List<Motherboard> motherboards = db.Motherboards.ToList();
+                    foreach (Motherboard motherboard in motherboards)
+                    {
+                        hardwares.Add(GetMotherboardFromDb(motherboard.Id));
+                    }
+                    break;
+                case "CPU":
+                    List<Processor> processors = db.Processors.ToList();
+                    foreach (Processor processor in processors)
+                    {
+                        hardwares.Add(GetProcessorFromDb(processor.Id));
+                    }
+                    break;
+                case "RAM":
+                    List<Ram> rams = db.RAMs.ToList();
+                    foreach (Ram ram in rams)
+                    {
+                        hardwares.Add(GetRamFromDb(ram.Id));
+                    }
+                    break;
+                case "Cooler":
+                    List<Cooling> coolers = db.Coolers.ToList();
+                    foreach (Cooling cooler in coolers)
+                    {
+                        hardwares.Add(GetCoolerFromDb(cooler.Id));
+                    }
+                    break;
+                case "GPU":
+                    List<Video> gpus = db.GPUs.ToList();
+                    foreach (Video gpu in gpus)
+                    {
+                        hardwares.Add(GetVideoFromDb(gpu.Id));
+                    }
+                    break;
+            }
+            return hardwares;
+        }
+
+
         public HardwareViewModel GetProductFromDb(int id, string hardwareType)
         {
             HardwareViewModel hardware= new HardwareViewModel();
             switch (hardwareType)
             {
-                case "Корпус":
-                    List<Corpus> corpuses = db.Corpuses.ToList();
-                    foreach (Corpus corpus in corpuses)
-                    {
-                        hardware = GetCorpusFromDb(corpus.Id);
-                    }
+                case "Cargo":
+                    hardware = GetCorpusFromDb(id);
                     break;
-                case "Блок питания":
-                    List<Power> powers = db.Powers.ToList();
-                    foreach (Power power in powers)
-                    {
-                        hardware = GetPowerFromDb(power.Id);
-                    }
+                case "Power":
+                    hardware = GetPowerFromDb(id);
                     break;
-                case "Материнская плата":
-                    List<Motherboard> motherboards = db.Motherboards.ToList();
-                    foreach (Motherboard motherboard in motherboards)
-                    {
-                        hardware = GetMotherboardFromDb(motherboard.Id);
-                    }
+                case "Motherboard":
+                    hardware = GetMotherboardFromDb(id);
                     break;
-                case "Процессор":
-                    List<Processor> processors = db.Processors.ToList();
-                    foreach (Processor processor in processors)
-                    {
-                        hardware = GetProcessorFromDb(processor.Id);
-                    }
+                case "CPU":
+                    hardware = GetProcessorFromDb(id);
                     break;
-                case "Оперативная память":
-                    List<Ram> rams = db.RAMs.ToList();
-                    foreach (Ram ram in rams)
-                    {
-                        hardware = GetRamFromDb(ram.Id);
-                    }
+                case "RAM":
+                    hardware = GetRamFromDb(id);
                     break;
-                case "Охлаждение":
-                    List<Cooling> coolers = db.Coolers.ToList();
-                    foreach (Cooling cooler in coolers)
-                    {
-                        hardware = GetCoolerFromDb(cooler.Id);
-                    }
+                case "Cooler":
+                    hardware = GetCoolerFromDb(id);
                     break;
-                case "Видеокарта":
-                    List<Video> gpus = db.GPUs.ToList();
-                    foreach (Video gpu in gpus)
-                    {
-                        hardware = GetVideoFromDb(gpu.Id);
-                    }
+                case "GPU":
+                    hardware = GetVideoFromDb(id);
                     break;
             }
             return hardware;
@@ -258,7 +289,7 @@ namespace DLP.Services.Catalog
             attributes.Add(new AttributeViewModel() { Name = "Материал", value = corpus.Material });
             attributes.Add(new AttributeViewModel() { Name = "Цвет", value = corpus.Color });
             attributes.Add(new AttributeViewModel() { Name = "Форм-фактор материнской платы", value = corpus.motherboardType });
-            return new HardwareViewModel() { DBId = corpus.Id, HardwareType="Корпус", Name = corpus.Name, Price = corpus.Price, Description = corpus.Description, MediaLink = corpus.MediaLink, Attributes = attributes };
+            return new HardwareViewModel() { DBId = corpus.Id, HardwareType="Cargo", Name = corpus.Name, Price = corpus.Price, Description = corpus.Description, MediaLink = corpus.MediaLink, Attributes = attributes };
         }
 
         public HardwareViewModel GetPowerFromDb(int id)
@@ -266,7 +297,7 @@ namespace DLP.Services.Catalog
             Power power = db.Powers.FirstOrDefault(data => data.Id == id);
             List<AttributeViewModel> attributes = new List<AttributeViewModel>();
             attributes.Add(new AttributeViewModel() { Name = "Генерируемая мощность (Vt)", value = Convert.ToString(power.GeneratePowerVt) });
-            return new HardwareViewModel() { DBId = power.Id, HardwareType = "Блок питания", Name = power.Name, Description= power.Description, Price = power.Price, MediaLink = power.MediaLink, Attributes = attributes };
+            return new HardwareViewModel() { DBId = power.Id, HardwareType = "Power", Name = power.Name, Description= power.Description, Price = power.Price, MediaLink = power.MediaLink, Attributes = attributes };
         }
         
         public HardwareViewModel GetMotherboardFromDb(int id)
@@ -279,7 +310,7 @@ namespace DLP.Services.Catalog
             attributes.Add(new AttributeViewModel() { Name = "Тип памяти", value = motherboard.MemoryType });
             attributes.Add(new AttributeViewModel() { Name = "Чипсет", value = motherboard.Chipset });
             attributes.Add(new AttributeViewModel() { Name = "PCI слот", value = motherboard.PCIVersion });
-            return new HardwareViewModel() { DBId = motherboard.Id, HardwareType = "Материнская плата", Name = motherboard.Name, Price = motherboard.Price, Description = motherboard.Description, MediaLink = motherboard.MediaLink, Attributes = attributes };
+            return new HardwareViewModel() { DBId = motherboard.Id, HardwareType = "Motherboard", Name = motherboard.Name, Price = motherboard.Price, Description = motherboard.Description, MediaLink = motherboard.MediaLink, Attributes = attributes };
         }
         
         public HardwareViewModel GetProcessorFromDb(int id)
@@ -291,7 +322,7 @@ namespace DLP.Services.Catalog
             attributes.Add(new AttributeViewModel() { Name = "Частота ядра (MHz)", value = Convert.ToString(processor.CoreFrequencyMHz) });
             attributes.Add(new AttributeViewModel() { Name = "Количество потоков", value = Convert.ToString(processor.FlowsQuantity) });
             attributes.Add(new AttributeViewModel() { Name = "Выделяемое тепло (Vt)", value = Convert.ToString(processor.HeatPowerVt) });
-            return new HardwareViewModel() { DBId = processor.Id, HardwareType = "Процессор", Name = processor.Name, Description = processor.Description, Price = processor.Price, MediaLink = processor.MediaLink, Attributes = attributes };
+            return new HardwareViewModel() { DBId = processor.Id, HardwareType = "CPU", Name = processor.Name, Description = processor.Description, Price = processor.Price, MediaLink = processor.MediaLink, Attributes = attributes };
         }
         
         public HardwareViewModel GetRamFromDb(int id)
@@ -302,7 +333,7 @@ namespace DLP.Services.Catalog
             attributes.Add(new AttributeViewModel() { Name = "Количество планок", value = Convert.ToString(ram.Quantity) });
             attributes.Add(new AttributeViewModel() { Name = "Тип памяти", value = ram.MemoryType });
             attributes.Add(new AttributeViewModel() { Name = "Частота памяти (MHz)", value = Convert.ToString(ram.MemoryFrequencyMHz) });
-            return new HardwareViewModel() { DBId = ram.Id, HardwareType = "Оперативная память", Name = ram.Name, Description = ram.Description, Price = ram.Price, MediaLink = ram.MediaLink, Attributes = attributes };
+            return new HardwareViewModel() { DBId = ram.Id, HardwareType = "RAM", Name = ram.Name, Description = ram.Description, Price = ram.Price, MediaLink = ram.MediaLink, Attributes = attributes };
         }
         
         public HardwareViewModel GetCoolerFromDb(int id)
@@ -311,7 +342,7 @@ namespace DLP.Services.Catalog
             List<AttributeViewModel> attributes = new List<AttributeViewModel>();
             attributes.Add(new AttributeViewModel() { Name = "Сокет", value = cooler.Socket });
             attributes.Add(new AttributeViewModel() { Name = "Рассеивание тепла (Vt)", value = Convert.ToString(cooler.HeatAbsorbingVt) });
-            return new HardwareViewModel() { DBId = cooler.Id, HardwareType = "Охлаждение", Name = cooler.Name, Description = cooler.Description, Price = cooler.Price, MediaLink = cooler.MediaLink, Attributes = attributes };
+            return new HardwareViewModel() { DBId = cooler.Id, HardwareType = "Cooler", Name = cooler.Name, Description = cooler.Description, Price = cooler.Price, MediaLink = cooler.MediaLink, Attributes = attributes };
         }
         
         public HardwareViewModel GetVideoFromDb(int id)
@@ -323,7 +354,7 @@ namespace DLP.Services.Catalog
             attributes.Add(new AttributeViewModel() { Name = "PCI слот", value = gpu.PCIVersion });
             attributes.Add(new AttributeViewModel() { Name = "Частота памяти (MHz)", value = Convert.ToString(gpu.MemoryFrequencyMHz) });
             attributes.Add(new AttributeViewModel() { Name = "Мощность (Vt)", value = Convert.ToString(gpu.PowerConsuptionVt) });
-            return new HardwareViewModel() { DBId = gpu.Id, HardwareType = "Видеокарта", Name = gpu.Name, Description = gpu.Description, Price = gpu.Price, MediaLink = gpu.MediaLink, Attributes = attributes };
+            return new HardwareViewModel() { DBId = gpu.Id, HardwareType = "GPU", Name = gpu.Name, Description = gpu.Description, Price = gpu.Price, MediaLink = gpu.MediaLink, Attributes = attributes };
         }
         
         public void SetCorpusToDb(HardwareViewModel inputCorpus)
@@ -506,25 +537,25 @@ namespace DLP.Services.Catalog
         {
             switch (product.HardwareType)
             {
-                case "Корпус":
+                case "Cargo":
                     SetCorpusToDb(product);
                     break;
-                case "Блок питания":
+                case "Power":
                     SetPowerToDb(product);
                     break;
-                case "Материнская плата":
+                case "Motherboard":
                     SetmotherboardToDb(product);
                     break;
-                case "Процессор":
+                case "CPU":
                     SetProcessorToDb(product);
                     break;
-                case "Оперативная память":
+                case "RAM":
                     SetRamToDb(product);
                     break;
-                case "Охлаждение":
+                case "Cooler":
                     SetCoolerToDb(product);
                     break;
-                case "Видеокарта":
+                case "GPU":
                     SetVideoToDb(product);
                     break;
             }

@@ -78,6 +78,11 @@ namespace DLP.Controllers
             return Service.CompareGpuPower(firstRequestId, secondRequestId);
         }
 
+        [HttpPost("compareall")]
+        public IEnumerable<CompareMessage> CompareAll([FromBody] PcModel PC)
+        {
+            return Service.ComparePC(PC);
+        }
 
         /*public IActionResult Index()
         {

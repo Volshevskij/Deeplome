@@ -32,7 +32,8 @@
 
 .item-comtainer {
   background-color: rgb(27, 26, 26);
-  height: 60px;
+  height: auto;
+  cursor: pointer;
  font-size: 2em;
  display: flex;
  flex-direction: row;
@@ -63,11 +64,25 @@
 
 .picture-disc {
   width: 8%;
-  height: 100%;
   background-color: blue;
 }
 
 img {
   width: 100%;
   height: 100%;
+}
+
+input[type="radio"]:checked + label{
+  background-color: rgb(97, 61, 61);
+}
+
+input[type="radio"] {
+  // visibility:hidden;
+}
+
+.save-button {
+  background-color: red;
+  text-align: center;
+  font-size: 3em;
+  cursor: pointer;
 }

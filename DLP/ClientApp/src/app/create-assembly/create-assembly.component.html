@@ -2,20 +2,35 @@
   <div class="left-flex">
     <div class="top-content">
       <div class="item-comtainer">
-        <div class="item-disc" style="background-color: rgb(97, 61, 61);">ОЗУ</div>
-        </div>
-        <div class="item-comtainer">
-          <div class="item-disc">ЦП</div>
-          </div>
-          <div class="item-comtainer">
-            <div class="item-disc">Видеокарта</div>
-            </div>
-            <div class="item-comtainer">
-              <div class="item-disc">Блок питания</div>
-              </div>
-              <div class="item-comtainer">
-                <div class="item-disc">Блок питания</div>
-                </div>
+        <div (click)="getContent('Cargo', 0)" class="item-disc">Корпус</div>
+      </div>
+      <div class="item-comtainer">
+        <div  (click)="getContent('Motherboard', 0)" class="item-disc">Материнская плата</div >
+      </div>
+      <div class="item-comtainer">
+        <div  (click)="getContent('Power', 0)" class="item-disc">Блок питания</div >
+      </div>
+      <div class="item-comtainer">
+        <div  (click)="getContent('CPU', 0)" class="item-disc">Процессор</div >
+      </div>
+      <div class="item-comtainer">
+        <div  (click)="getContent('RAM', 1)" class="item-disc">ОЗУ1</div >
+      </div>
+      <div class="item-comtainer">
+        <div  (click)="getContent('RAM', 2)" class="item-disc">ОЗУ2</div >
+      </div>
+      <div class="item-comtainer">
+        <div  (click)="getContent('RAM', 3)" class="item-disc">ОЗУ3</div >
+      </div>
+      <div class="item-comtainer">
+        <div  (click)="getContent('RAM', 4)" class="item-disc">ОЗУ4</div >
+      </div>
+      <div class="item-comtainer">
+        <div  (click)="getContent('GPU', 0)" class="item-disc">Видеокарта</div >
+      </div>
+      <div class="item-comtainer">
+        <div  (click)="getContent('Cooler', 0)" class="item-disc">Охлождение</div >
+      </div>
     </div>
     <div class="bottom-content">
       <div class="bottom-item-comtainer">
@@ -25,26 +40,18 @@
     </div>
   </div>
   <div class="right-flex">
-    <div class="item-comtainer">
+    <div (click)="saveAssembly()" class="save-button">СОХРАНИТЬ</div>
+    <div *ngFor="let item of items" class="item-comtainer">
       <div class="picture-disc">
-        <img src="https://content2.onliner.by/catalog/device/header/d221b391063d15550222934e4b65ba80.jpeg" alt="альтернативный текст">
+        <img src={{item?.mediaLink}} alt="Unfound">
+      </div>  
+      <input type="radio" id="itm" name={{item?.name}} >
+      <label (click)=" addToList(item.dbId, item.hardwareType) " class="item-disc" for="itm">
+        {{item?.hardwareType}}:  {{item?.name}} 
+      </label>
       </div>
-      <div class="item-disc" style="background-color: rgb(97, 61, 61);">ОЗУ: HyperX Predator 2x8GB DDR4 PC4-25600</div>
-      </div>
-      <div class="item-comtainer">
-        <div class="picture-disc">
-          <img src="https://content2.onliner.by/catalog/device/header/bd746c29435133b6d513465cb5cb8d77.jpeg" alt="альтернативный текст">
-        </div>
-        <div class="item-disc">ОЗУ: Crucial Ballistix 2x8GB DDR4 PC4-25600</div>
-        </div>
-        <div class="item-comtainer">
-          <div class="picture-disc">
-            <img src="https://content2.onliner.by/catalog/device/header/e0b5bc636868f76c39a5bb10346dfca9.jpeg" alt="альтернативный текст">
-          </div>
-          <div class="item-disc">ОЗУ: G.Skill Aegis 2x8GB DDR4 </div>
-          </div>
-          <div class="item-comtainer">
-            <div class="item-disc" style="background-color: rgb(247, 18, 18);">СОХРАНИТЬ</div>
-            </div>
+      
   </div>
 </div>
+
+addToPc(item?.id, item?.hardwareType)

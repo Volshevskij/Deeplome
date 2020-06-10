@@ -28,6 +28,18 @@ export class ContentService {
 
   getProductById(id: number, type: string) {
     return this.http.get(this.connetction + 'catalog/' + id + '/' + type);
-   }
+  }
+
+  getProductByType(type: string) {
+    return this.http.get(this.connetction + 'catalog/' + 'type/' + type);
+  }
+
+  saveAssembly(pc: any) {
+    return this.http.post(this.connetction + 'pc/' + 'compareall/', pc);
+  }
+
+  setPc(pc: any) {
+    this.http.post(this.connetction + 'pc/' + 'setPC/', pc).toPromise();
+  }
 
 }

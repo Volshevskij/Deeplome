@@ -43,7 +43,22 @@ namespace DLP.Services.PC
             db.PCs.Add(PC);
             db.SaveChanges();
         }
-        
+
+        public IEnumerable<CompareMessage> ComparePC(PcModel PC)
+        {
+            List<CompareMessage> messages = new List<CompareMessage>();
+            List<int> ramIds = new List<int>();
+            ramIds.Add(PC.Ram1Id);
+            messages.Add(CompareCorpusMotherboard(PC.CorpusId, PC.MotherboardId));
+            messages.Add(CompareMotherboardProcessor(PC.MotherboardId, PC.ProcessorId));
+            messages.Add(CompareMotherboardRam(PC.MotherboardId, ramIds));
+            messages.Add(CompareProcessorCooler(PC.ProcessorId, PC.CoolerId));
+            messages.Add(CompareGpuMotherboard(PC.GPUId, PC.MotherboardId));
+            messages.Add(CompareGpuPower(PC.GPUId, PC.PowerId));
+            return messages;
+        }
+
+
         public CompareMessage CompareCorpusMotherboard(int corpusId, int motherboardId)
         {
             HardwareViewModel corpus = catalogService.GetCorpusFromDb(corpusId);
@@ -196,7 +211,7 @@ namespace DLP.Services.PC
                     }
                 }
             }
-            return new CompareMessage() { Comparable = false, Message = "Видеокарта достаточно обеспечена питанием" };
+            return new CompareMessage() { Comparable = true, Message = "Видеокарта достаточно обеспечена питанием" };
         }
     }
 }

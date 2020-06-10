@@ -48,6 +48,36 @@ namespace DLP.Controllers
             return Ok();
         }
 
+        [HttpGet("comparecorpusmotherboard")]
+        public CompareMessage CompareCorpusMotherboard([FromBody]int corpusId,[FromBody] int motherboardId) {
+            return Service.CompareCorpusMotherboard(corpusId, motherboardId);
+        }
+
+        [HttpGet("comparemotherboardprocessor")]
+        public CompareMessage CompareMotherboardProcessor([FromBody] int motherboardId, [FromBody] int processorId) {
+            return Service.CompareMotherboardProcessor(motherboardId, processorId);
+        }
+
+        [HttpGet("comparemotherboardram")]
+        public CompareMessage CompareMotherboardRam([FromBody] int motherboardId, [FromBody] List<int> ramId) {
+            return Service.CompareMotherboardRam(motherboardId, ramId);
+        }
+
+        [HttpGet("compareprocesorcooler")]
+        public CompareMessage CompareProcessorCooler([FromBody] int processorId, [FromBody] int coolerId) {
+            return Service.CompareProcessorCooler(processorId, coolerId);
+        }
+
+        [HttpGet("comparegpumotherboard")]
+        public CompareMessage CompareGpuMotherboard([FromBody] int gpuId, [FromBody] int motherboardId) {
+            return Service.CompareGpuMotherboard(gpuId, motherboardId);
+        }
+
+        [HttpGet("comparegpupower")]
+        public CompareMessage CompareGpuPower([FromBody] int gpuId, [FromBody] int powerId) {
+            return Service.CompareGpuPower(gpuId, powerId);
+        }
+
 
         /*public IActionResult Index()
         {

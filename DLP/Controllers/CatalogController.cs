@@ -37,7 +37,7 @@ namespace DLP.Controllers
         }
 
         [HttpGet("getProduct")]
-        public HardwareViewModel GetProduct([FromBody]int id, string hardwareType)
+        public HardwareViewModel GetProduct([FromBody]int id, [FromBody] string hardwareType)
         {
             return Service.GetProductFromDb(id, hardwareType);
         }

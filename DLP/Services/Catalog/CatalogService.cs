@@ -289,7 +289,7 @@ namespace DLP.Services.Catalog
             attributes.Add(new AttributeViewModel() { Name = "Сокет", value = processor.Socket });
             attributes.Add(new AttributeViewModel() { Name = "Количество ядер", value = Convert.ToString(processor.CoresQuantity) });
             attributes.Add(new AttributeViewModel() { Name = "Частота ядра (MHz)", value = Convert.ToString(processor.CoreFrequencyMHz) });
-            attributes.Add(new AttributeViewModel() { Name = "Количество потокоов", value = Convert.ToString(processor.FlowsQuantity) });
+            attributes.Add(new AttributeViewModel() { Name = "Количество потоков", value = Convert.ToString(processor.FlowsQuantity) });
             attributes.Add(new AttributeViewModel() { Name = "Выделяемое тепло (Vt)", value = Convert.ToString(processor.HeatPowerVt) });
             return new HardwareViewModel() { DBId = processor.Id, HardwareType = "Процессор", Name = processor.Name, Description = processor.Description, Price = processor.Price, MediaLink = processor.MediaLink, Attributes = attributes };
         }
@@ -413,7 +413,7 @@ namespace DLP.Services.Catalog
                 {
                     processor.CoreFrequencyMHz = Convert.ToDouble(attribute.value);
                 }
-                else if (attribute.Name == "Количество потокоов")
+                else if (attribute.Name == "Количество потоков")
                 {
                     processor.FlowsQuantity = Convert.ToInt32(attribute.value);
                 }

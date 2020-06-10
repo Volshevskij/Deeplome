@@ -145,6 +145,54 @@ namespace DLP.Services.Catalog
             return hardwares;
         }
 
+        public IEnumerable<HardwareViewModel> GetProductsFromDbByName(string name)
+        {
+            List<HardwareViewModel> hardwares = new List<HardwareViewModel>();
+            Corpus corpus = db.Corpuses.FirstOrDefault(data => data.Name == name);
+            try
+            {
+                hardwares.Add(GetCorpusFromDb(corpus.Id));
+            }
+            catch { }
+            Power power = db.Powers.FirstOrDefault(data => data.Name == name);
+            try
+            {
+                hardwares.Add(GetPowerFromDb(power.Id));
+            }
+            catch { }
+            Motherboard motherboard = db.Motherboards.FirstOrDefault(data => data.Name == name);
+            try
+            {
+                hardwares.Add(GetMotherboardFromDb(motherboard.Id));
+            }
+            catch { }
+            Processor processor = db.Processors.FirstOrDefault(data => data.Name == name);
+            try
+            {
+                hardwares.Add(GetProcessorFromDb(processor.Id));
+            }
+            catch { }
+            Cooling cooler = db.Coolers.FirstOrDefault(data => data.Name == name);
+            try
+            {
+                hardwares.Add(GetCoolerFromDb(cooler.Id));
+            }
+            catch { }
+            Ram ram = db.RAMs.FirstOrDefault();
+            try
+            {
+                hardwares.Add(GetRamFromDb(ram.Id));
+            }
+            catch { }
+            Video gpu = db.GPUs.FirstOrDefault(data => data.Name == name);
+            try
+            {
+                hardwares.Add(GetVideoFromDb(gpu.Id));
+            }
+            catch { }
+            return hardwares;
+        }
+
         public HardwareViewModel GetProductFromDb(int id, string hardwareType)
         {
             HardwareViewModel hardware= new HardwareViewModel();

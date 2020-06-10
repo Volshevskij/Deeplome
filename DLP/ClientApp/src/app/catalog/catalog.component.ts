@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {ContentService} from '../services/content/content.service';
+import { Component, OnInit, Inject } from '@angular/core';
+import { ContentService } from '../services/content/content.service';
+import { Injectable } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-catalog',
@@ -11,7 +14,7 @@ export class CatalogComponent implements OnInit {
   constructor( private service: ContentService) { }
 
   ngOnInit() {
-    this.tmp = '';
+    this.tmp  = [];
     this.getPosts();
   }
 
@@ -20,7 +23,7 @@ export class CatalogComponent implements OnInit {
   getPosts() {
     this.service.getProducts().subscribe((data: any) => {
       this.tmp = data;
-      console.log(this.tmp[0].content.rendered);
+      console.log(this.tmp);
     }  );
   }
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders,HttpClientModule, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule, HttpRequest } from '@angular/common/http';
+import { Component, Inject, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 
@@ -18,9 +19,11 @@ import { map } from 'rxjs/operators';
 export class ContentService {
 
   private headers = new HttpHeaders();
+  private url;
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient/*, @Inject('BASE_URL') baseUrl: string*/) {
+    //this.url = baseUrl;
     this.headers.append('Access-Control-Allow-Origin','*');
     this.headers.append('Authorization','Basic ' + btoa( 'ck_4153a2425f568602ad67973b58573efd471b3a70:cs_2f0673fccbf6cb052df8ae1cc8baedaf06ea54b9'));
    }
@@ -35,7 +38,9 @@ export class ContentService {
   }
 
   getProducts() {
-   return this.http.get('https://diplomawp.000webhostapp.com/wp-json/wc/v2/products');
+    console.log(location.origin)
+    //return this.http.get('https://diplomawp.000webhostapp.com/wp-json/wc/v2/products');
+    return this.http.get("https://localhost:44344/api/" + 'product/getCatalog');
   }
 
 }

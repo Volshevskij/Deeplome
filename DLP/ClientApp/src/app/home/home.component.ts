@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ContentService } from '../services/content/content.service';
+
 
 @Component({
   selector: 'app-home',

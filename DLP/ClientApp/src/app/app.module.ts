@@ -20,7 +20,12 @@ import { HttpClientModule,HttpClient, HTTP_INTERCEPTORS } from '@angular/common/
 import { ItemComponent } from './item/item.component';
 import { AssemblyComponent } from './assembly/assembly.component';
 import { ContentService } from './services/content/content.service';
-import {HeaderInsterseptor} from './services/content/interseptor.service';
+import { HeaderInsterseptor } from './services/content/interseptor.service';
+import { Component, Inject, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
+
+
 
 
 @NgModule({
@@ -35,9 +40,9 @@ import {HeaderInsterseptor} from './services/content/interseptor.service';
     AssemblyComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
-    AppRoutingModule,
+    //AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     MatNativeDateModule,
@@ -45,7 +50,13 @@ import {HeaderInsterseptor} from './services/content/interseptor.service';
     MatToolbarModule,
     MatMenuModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    RouterModule.forRoot([
+      { path: 'home', component: HomeComponent },
+      { path: 'catalog', component: CatalogComponent },
+      { path: 'item', component: ItemComponent },
+      { path: 'create_assembly', component: AssemblyComponent },
+    ])
   ],
   providers: [
     ContentService,

@@ -10,6 +10,7 @@ namespace DLP.Services.Catalog
     {
         IEnumerable<HardwareViewModel> GetCatalog();
         HardwareViewModel GetProductFromDb(int id, string hardWareType);
+        IEnumerable<HardwareViewModel> GetProductsFromDbByName(string name);
         HardwareViewModel GetCorpusFromDb(int id);
         HardwareViewModel GetPowerFromDb(int id);
         HardwareViewModel GetMotherboardFromDb(int id);

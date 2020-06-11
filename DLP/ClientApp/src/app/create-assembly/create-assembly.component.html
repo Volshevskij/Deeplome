@@ -33,20 +33,20 @@
       </div>
     </div>
     <div class="bottom-content">
-      <div class="bottom-item-comtainer">
-        <div class="item-disc">Объем:</div>
-        <div class="item-disc">16 ГБ</div>
+      <div *ngFor="let item of discriptions" class="bottom-item-comtainer">
+        <div class="item-disc">{{item?.name}}: {{item?.value}}</div>
         </div>
     </div>
   </div>
   <div class="right-flex">
+    <input type="text" [(ngModel)]="name" value="NAME" size="300%"/>
     <div (click)="saveAssembly()" class="save-button">СОХРАНИТЬ</div>
     <div *ngFor="let item of items" class="item-comtainer">
       <div class="picture-disc">
         <img src={{item?.mediaLink}} alt="Unfound">
       </div>  
       <input type="radio" id="itm" name={{item?.name}} >
-      <label (click)=" addToList(item.dbId, item.hardwareType) " class="item-disc" for="itm">
+      <label (click)=" addToList(item.dbId, item.hardwareType, item.attributes[0]) " class="item-disc" for="itm">
         {{item?.hardwareType}}:  {{item?.name}} 
       </label>
       </div>
@@ -54,4 +54,3 @@
   </div>
 </div>
 
-addToPc(item?.id, item?.hardwareType)

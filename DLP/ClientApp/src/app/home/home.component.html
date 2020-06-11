@@ -1,8 +1,8 @@
 <div class="content-container">
   <div class="main-grid-container">
 
-    <div *ngFor="let item of posts" class="item-comtainer">
-      <div [innerHTML]="item.content.rendered" class="item-disc"></div>
+    <div class="item-comtainer">
+      <div [innerHTML]="this.item.content.rendered" class="item-disc"></div>
       </div>
 
   </div>
@@ -13,7 +13,7 @@
         <div class="short-item-disc">Новости дня:</div>
         </div>
         <div *ngFor="let item of posts" class="short-item-comtainer">
-          <div [innerHTML]="item.content.rendered" class="short-item-disc"></div>
+          <div (click)="getPostById(item.id)" [innerHTML]="item.excerpt.rendered" class="short-item-disc"></div>
           </div>
     </div>
   </div>

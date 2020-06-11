@@ -1,25 +1,37 @@
 <div class="content-container">
 
   <div class="filter-container">
-    <button mat-raised-button [matMenuTriggerFor]="menu">Тип ОЗУ</button>
-      <mat-menu #menu="matMenu">
+    <button mat-raised-button [matMenuTriggerFor]="ram">RAM</button>
+      <mat-menu #ram="matMenu">
         <button (click)="getContent('RAM')" mat-menu-item>DDR3</button>
         <button (click)="getContent('RAM')" mat-menu-item>DDR4</button>
       </mat-menu>
-      <button mat-raised-button [matMenuTriggerFor]="menu">Производитель</button>
+      <button mat-raised-button [matMenuTriggerFor]="menu">Creator</button>
       <mat-menu #menu="matMenu">
         <button (click)="getContent('RAM')" mat-menu-item>HyperX</button>
         <button (click)="getContent('RAM')" mat-menu-item>Palit</button>
       </mat-menu>
-      <button mat-raised-button [matMenuTriggerFor]="menu">Тип процессора</button>
-      <mat-menu #menu="matMenu">
-        <button (click)="getContent('CPU')" mat-menu-item>READY ASSEMBLIES</button>
-        <button (click)="getContent('CPU')" mat-menu-item>CREATE ASSEMBLY</button>
+      <button mat-raised-button [matMenuTriggerFor]="proc">CPU</button>
+      <mat-menu #proc="matMenu">
+        <button (click)="getContent('CPU')" mat-menu-item>AMD</button>
+        <button (click)="getContent('CPU')" mat-menu-item>Intel</button>
       </mat-menu>
-      <button mat-raised-button [matMenuTriggerFor]="menu">Тип GPU</button>
-      <mat-menu #menu="matMenu">
+      <button mat-raised-button [matMenuTriggerFor]="gpu">GPU</button>
+      <mat-menu #gpu="matMenu">
         <button (click)="getContent('GPU')" mat-menu-item>DDR3</button>
         <button (click)="getContent('GPU')" mat-menu-item>DDR4</button>
+      </mat-menu>
+      <button mat-raised-button [matMenuTriggerFor]="carg">Corpus</button>
+      <mat-menu #carg="matMenu">
+        <button (click)="getContent('Cargo')" mat-menu-item>Cooler master</button>
+      </mat-menu>
+      <button mat-raised-button [matMenuTriggerFor]="cool">Cooler</button>
+      <mat-menu #cool="matMenu">
+        <button (click)="getContent('Cooler')" mat-menu-item>Soundless</button>
+      </mat-menu>
+      <button mat-raised-button [matMenuTriggerFor]="cool">Power</button>
+      <mat-menu #cool="matMenu">
+        <button (click)="getContent('Power')" mat-menu-item>Soundless</button>
       </mat-menu>
   </div>
   <div  routerLinkActive="active" class ="items-container">

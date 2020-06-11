@@ -11,15 +11,22 @@ export class HomeComponent implements OnInit {
   constructor(private service: ContentService) { }
 
   posts: any;
+  item: any;
 
   ngOnInit() {
     this.getPosts();
+    this.getPostById(1);
   }
 
   getPosts() {
     this.service.getPosts().subscribe((data: any) => {
       this.posts = data;
-      //console.log(this.posts[0].content.rendered);
+    }  );
+  }
+
+  getPostById(id: number) {
+    this.service.getPostById(id).subscribe((data: any) => {
+      this.item = data;
     }  );
   }
 

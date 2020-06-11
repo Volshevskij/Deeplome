@@ -22,6 +22,10 @@ export class ContentService {
     return this.http.get('https://diplomawp.000webhostapp.com/wp-json/wp/v2/posts');
   }
 
+  getPostById(id: number) {
+    return this.http.get('https://diplomawp.000webhostapp.com/wp-json/wp/v2/posts/' + id);
+  }
+
   getProducts() {
    return this.http.get(this.connetction + 'catalog/getCatalog');
   }

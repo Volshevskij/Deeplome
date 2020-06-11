@@ -22,4 +22,10 @@ export class CatalogComponent implements OnInit {
     }  );
   }
 
+  getContent(type: string) {
+    this.service.getProductByType(type).subscribe((data: any) => {
+      this.items = data;
+    });
+  }
+
 }

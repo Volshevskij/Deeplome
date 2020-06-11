@@ -19,80 +19,79 @@ export class CreateAssemblyComponent implements OnInit {
   messages: CompareMessages[];
   ngOnInit() {
     this.getContent('Cargo', 0);
-    //this.newPc = new Pc();
   }
 
   getContent(type: string, rt: number) {
     this.service.getProductByType(type).subscribe((data: any) => {
       this.items = data;
-      this.rtm = rt; 
+      this.rtm = rt;
       console.log(data);
     });
   }
 
-  addToList (id: number, type: string) {
+  addToList(id: number, type: string) {
     console.log(id);
     console.log(type);
-    if (type == 'Cargo') {
+    if (type === 'Cargo') {
          this.newPc.corpusId = id;
          console.log(this.newPc.corpusId);
        }
-       if (type == 'Motherboard') {
+    if (type === 'Motherboard') {
         this.newPc.motherboardId = id;
         console.log(this.newPc.motherboardId);
       }
-      if (type == 'Power') {
+    if (type === 'Power') {
         this.newPc.powerId = id;
         console.log(this.newPc.powerId);
       }
-      if (type == 'CPU') {
+    if (type === 'CPU') {
         this.newPc.processorId = id;
         console.log(this.newPc.processorId);
       }
-      if (type == 'RAM' && this.rtm == 1) {
+    if (type === 'RAM' && this.rtm === 1) {
         this.newPc.ram1Id = id;
         console.log(this.newPc.ram1Id);
       }
-      if (type == 'RAM' && this.rtm == 2) {
+    if (type === 'RAM' && this.rtm === 2) {
         this.newPc.ram2Id = id;
         console.log(this.newPc.ram2Id);
       }
-      if (type == 'RAM' && this.rtm == 3) {
+    if (type === 'RAM' && this.rtm === 3) {
         this.newPc.ram3Id = id;
         console.log(this.newPc.ram3Id);
       }
-      if (type == 'RAM' && this.rtm == 4) {
+    if (type === 'RAM' && this.rtm === 4) {
         this.newPc.ram4Id = id;
         console.log(this.newPc.ram4Id);
       }
-      if (type == 'GPU') {
+    if (type === 'GPU') {
         this.newPc.gPUId = id;
         console.log(this.newPc.gPUId);
       }
-      if (type == 'Cooler') {
+    if (type === 'Cooler') {
         this.newPc.coolerId = id;
         console.log(this.newPc.coolerId);
       }
   }
 
-  saveAssembly () {
+  saveAssembly() {
     console.log(this.newPc);
     this.service.saveAssembly(this.newPc).subscribe((data: any) => {
-      this.messages = data; 
+      this.messages = data;
       this.messages.forEach(element => {
         alert(element.message);
       });
       let count = 6;
       this.messages.forEach(element => {
         console.log(element.comparable);
-        if (element.comparable == true)
-        {
+        if (element.comparable === true) {
           count--;
         }
       });
-      if (count == 0) {
-        console.log("Set pc");
+      if (count === 0) {
+        console.log('Set pc');
         console.log(this.newPc);
+        this.newPc.name = '';
         this.service.setPc(this.newPc);
       }
     });

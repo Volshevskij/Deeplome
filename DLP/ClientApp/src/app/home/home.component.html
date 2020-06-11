@@ -2,10 +2,6 @@
   <div class="main-grid-container">
 
     <div *ngFor="let item of posts" class="item-comtainer">
-      <div>{{item.title.rendered}}</div>
-      <div class="picture-disc">
-        <img src="https://content2.onliner.by/catalog/device/header/d221b391063d15550222934e4b65ba80.jpeg" alt="Unfound">
-      </div>
       <div [innerHTML]="item.content.rendered" class="item-disc"></div>
       </div>
 
@@ -16,12 +12,9 @@
       <div class="item-comtainer">
         <div class="short-item-disc">Новости дня:</div>
         </div>
-        <div class="short-item-comtainer">
-          <div class="item-disc">Приложение развёрнуто!</div>
+        <div *ngFor="let item of posts" class="short-item-comtainer">
+          <div [innerHTML]="item.content.rendered" class="short-item-disc"></div>
           </div>
-          <div class="short-item-comtainer">
-            <div class="item-disc">Добавлены первые компоненты</div>
-            </div>
     </div>
   </div>
 

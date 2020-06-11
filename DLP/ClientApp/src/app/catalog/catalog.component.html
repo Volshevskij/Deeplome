@@ -1,26 +1,27 @@
 <div class="content-container">
 
   <div class="filter-container">
-    <div class="filt-comtainer">
-      <div class="item-disc">ТИП: ОЗУ</div>
-      </div>
-      <div class="filt-comtainer">
-        <div class="item-disc">Категория: Любая</div>
-        </div>
-        <div class="filt-comtainer">
-          <div class="item-disc">Цена: Любая</div>
-          </div>
-          <div class="filt-comtainer">
-            <div class="item-disc">Производитель: Любой</div>
-            </div>
-            <div class="filt-comtainer">
-              <div class="item-disc">Каличество: Любое</div>
-              </div>
-              <div class="filt-comtainer">
-                <div class="item-disc">DDR: Любое</div>
-                </div>
+    <button mat-raised-button [matMenuTriggerFor]="menu">Тип ОЗУ</button>
+      <mat-menu #menu="matMenu">
+        <button (click)="getContent('RAM')" mat-menu-item>DDR3</button>
+        <button (click)="getContent('RAM')" mat-menu-item>DDR4</button>
+      </mat-menu>
+      <button mat-raised-button [matMenuTriggerFor]="menu">Производитель</button>
+      <mat-menu #menu="matMenu">
+        <button (click)="getContent('RAM')" mat-menu-item>HyperX</button>
+        <button (click)="getContent('RAM')" mat-menu-item>Palit</button>
+      </mat-menu>
+      <button mat-raised-button [matMenuTriggerFor]="menu">Тип процессора</button>
+      <mat-menu #menu="matMenu">
+        <button (click)="getContent('CPU')" mat-menu-item>READY ASSEMBLIES</button>
+        <button (click)="getContent('CPU')" mat-menu-item>CREATE ASSEMBLY</button>
+      </mat-menu>
+      <button mat-raised-button [matMenuTriggerFor]="menu">Тип GPU</button>
+      <mat-menu #menu="matMenu">
+        <button (click)="getContent('GPU')" mat-menu-item>DDR3</button>
+        <button (click)="getContent('GPU')" mat-menu-item>DDR4</button>
+      </mat-menu>
   </div>
-
   <div  routerLinkActive="active" class ="items-container">
     <div *ngFor="let item of items" class="item-comtainer">
       <div class="picture-disc">
